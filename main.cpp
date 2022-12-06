@@ -1,34 +1,53 @@
-#include <iostream>
+#include<iostream>
+#include<cmath>
 using namespace std;
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-int main(int argc, char** argv) {
-    int n,num,k=0;
-    int sum=0;
-    cin>>n;
-    while(n--){
-    	k=0;
-    	sum=0;
-    	cin>>num;
- 		int a[num]={0};
- 		int b[num]={0};
- 		for(int i=0;i<num;i++){
- 			cin>>a[i];
-		 }
-		for(int f=1;f<num;f++){
-			k=0;
-			for(int j=0;j<f;j++){
-				if(a[j]<=a[f]){
-				   k++;
-			}
-			b[f]=k;	
-		}	
-	
-		}
-		for(int i=0;i<num;i++){
-			sum+=b[i];
-		}
-		cout<<sum<<endl;
-	}
-	return 0;
+int happy(int s);
+int f(int c);
+int main()
+{
+   int n,a;
+   int total=0,m=0,num=0,k=0,sum=0,pp=0;
+   cin>>n;
+   while(n--){
+   		k++;
+   		cin>>a;
+   		if(a<10){
+   			num=happy(a);
+   		    sum=f(num);
+		   }else{
+		   	sum=f(a);
+		   }
+   	
+   		while(1){
+   			pp=f(sum);
+   			sum=f(pp);
+   			if(sum<10)break;
+		   }
+		
+		  
+		
+   	if(sum==1){
+   		cout<<"Case "<<"#"<<k<<":"<<" "<<a<<" is a Happy number.\n";
+	   }else{
+	   		cout<<"Case "<<"#"<<k<<":"<<" "<<a<<" is an Unhappy number.\n";
+	   }
+	  
+	   
+   }
 }
+int f(int c){
+	int m=0,total=0;
+		while(c>0){
+   			m=c%10;
+   			c/=10;
+   			total+=happy(m);
+		   }
+		   return total;
+}
+int happy(int s){
+	int sum=0;
+	sum=pow(s,2);
+	return sum;
+}
+
+ 
